@@ -1,4 +1,4 @@
 baseurl = "/"
 languageCode = "en-us"
 title = "Awesome Inc."
-theme = "https://github.com/Jagucan/gohugo-theme-ananke"
+theme = "ananke"
