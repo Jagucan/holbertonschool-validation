@@ -1,5 +1,5 @@
 build:	## compile the source code of the application to a binary named awesome-api
-		go get github.com/gorilla/nux
+		go get github.com/gorilla/mux
 		go build
 
 run:	## run the application in background by executing the binary awesome-api
