@@ -3,7 +3,7 @@ build:	## compile the source code of the application to a binary named awesome-a
 		go build
 
 run:	## run the application in background by executing the binary awesome-api
-		./awesome-api >./awesome-api.log 2>&1 &.
+		./awesome-api >./awesome-api.log 2>&1 &
 
 stop:	## stop the application with the command kill XXXXX where XXXXX is the Process ID of the application. 
 		kill "$(shell pgrep awesome-api)"
