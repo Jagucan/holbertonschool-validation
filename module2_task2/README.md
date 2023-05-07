@@ -15,4 +15,5 @@
 - clean: Stop the application. Delete the binary awesome-api and the log file awesome-api.log
 - test: test the application
 - lint: static linting on go files
+- unit-tests: execute unit tests
 - help: show the help for the application
