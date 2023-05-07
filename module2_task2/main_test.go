@@ -37,7 +37,7 @@ func Test_HelloHandler(t *testing.T) {
 	  body: "Hello there!",
 	},
 	{
-      name:         "Multiple names",
+      name:         "Multiplenames",
       queryString:  "name=Rosa Hopper&name=Grace Franklin",
       responseCode: 200,
       body:         "Hello Grace Franklin!",
