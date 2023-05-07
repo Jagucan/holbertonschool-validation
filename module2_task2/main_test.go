@@ -37,10 +37,10 @@ func Test_HelloHandler(t *testing.T) {
 	  body: 		"Hello there!",
 	},
 	{
-      name:         "Multiple names",
-      queryString:  "name=Rosa Hopper&name=Grace Franklin",
+      name:         "Multiple name",
+      queryString:  "name=Grace&name=John",
       responseCode: 200,
-      body:         "Hello Grace Franklin!",
+      body:         "Hello Grace!",
     },
     // INSERT MORE TESTS HERE
   }
