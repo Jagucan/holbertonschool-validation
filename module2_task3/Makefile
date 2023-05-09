@@ -1,30 +1,29 @@
-build:	## compile the source code of the application to a binary named awesome-api
+build: ## Compile the source code of the application to a binary named awesome-api
 	make lint
-	go get github.com/gorilla/mux
 	go build
 
-run:	## run the application in background by executing the binary awesome-api
+run: ## Run the application in background by executing the binary awesome-api, and write logs into a file named awesome-api.log
 	./awesome-api >./awesome-api.log 2>&1 &
 
-stop:	## stop the application with the command kill XXXXX where XXXXX is the Process ID of the application. 
+stop: ## Stop the application with the command kill XXXXX where XXXXX is the Process ID of the application. 
 	kill "$(shell pgrep awesome-api)"
 
-clean:	## Stop the application. Delete the binary awesome-api and the log file awesome-api.log
-	- make stop
-	- rm ./awesome-api ./awesome-api.log ./coverage-units.out
+clean: ## Delete the binary awesome-api and the log file awesome-api.log
+	-make stop
+	-rm ./awesome-api ./awesome-api.log ./coverage-units.out 
 
-test:	## test the application
+test: ## Check expected behaviour of the app
 	make unit-tests
 	make integration-tests
 
-lint:	## static linting on go files
+lint: ## Static linting on go files using golangci-lint
 	@golangci-lint run
 
-unit-tests:	## unit tests
-	@go test -v -short -coverprofile=coverage-units.out
+unit-tests: ## execute (successfully) the Golang unit tests:
+	@go test -v -short -coverprofile=coverage-units.out	
 
-integration-tests:	## integration tests
+integration-tests: ## execute the Golang integration tests
 	@go test -v -coverprofile=coverage-integrations.out
 
-help:	## Show this help.
+help: ## Show this help message
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
