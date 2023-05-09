@@ -19,7 +19,7 @@ test:	## test the application
 
 lint:	## static linting on go files
 	@golangci-lint run
-
+ 
 unit-tests:	## unit tests
 	@go test -v -short -coverprofile=coverage-units.out
 
