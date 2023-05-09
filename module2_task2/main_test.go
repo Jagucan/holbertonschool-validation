@@ -31,7 +31,7 @@ func Test_HelloHandler(t *testing.T) {
       body:         "Hello Rosalind Franklin!",
     },
 	{
-      name: 		"Empty name",
+      name: 		"No name",
 	  queryString: 	"",
 	  responseCode: 200,
 	  body: 		"Hello there!",
@@ -42,6 +42,11 @@ func Test_HelloHandler(t *testing.T) {
       responseCode: 200,
       body:         "Hello Grace!",
     },
+	{
+      name: 		"Empty name",
+	  queryString: 	"name=",
+	  responseCode: 400,
+	},
     // INSERT MORE TESTS HERE
   }
   for _, tt := range tests {
