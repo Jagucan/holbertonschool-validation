@@ -1,4 +1,8 @@
 build: ## Generate the website from the markdown and configuration files in the directory dist/ and compile the source code of the application to a binary named awesome-api
+	npm install -g markdown-link-check
+	apt-get install ruby
+	apt-get install rubygems
+	gem install mdl
 	make check
 	hugo
 
@@ -34,8 +38,9 @@ check: ## Markdown linting on syntax and dead links
 	markdown-link-check ./content/posts/*
 	markdownlint ./content/posts/*
 
+
 validate: ## should validate the file ./dist/index.html by using the command line Holberton’s W3C Validator
-	-./w3c_validator.py ./dist/index.html
+	- ./w3c_validator.py ./dist/index.html
 
 help: ## Shows this help message
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
