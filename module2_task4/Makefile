@@ -31,10 +31,6 @@ integration-tests: ## execute the Golang integration tests
 	@go test -v -coverprofile=coverage-integrations.out
 
 check: ## Markdown linting on syntax and dead links
-	npm install -g markdown-link-check
-	apt-get install ruby
-	apt-get install rubygems
-	gem install mdl
 	markdown-link-check ./content/posts/*
 	markdownlint ./content/posts/*
 
