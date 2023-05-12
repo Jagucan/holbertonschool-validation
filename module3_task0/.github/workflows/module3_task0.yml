@@ -1,0 +1,20 @@
+name: Module3_Task0
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 12 * * *' # set to run at 12:00 PM every day
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Make help
+      run: |
+        cd path/to/repo
+        make help
