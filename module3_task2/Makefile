@@ -26,8 +26,6 @@ test: ## test the application
 	@make validate
 
 lint: ## Static linting on go files using golangci-lint
-	@curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b /usr/local/bin v1.42.0
-	@export PATH="/usr/local/bin:${PATH}"
 	@-golangci-lint run
 
 unit-tests: ## execute unit tests
