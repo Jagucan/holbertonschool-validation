@@ -15,11 +15,11 @@ jobs:
           tag_name: ${{ github.ref }}
           name: awesome-website.zip
           path: ./module3_task3/awesome-website.zip
-      - name: Upload Release
-        uses: release-drafter/release-drafter
+      - name: Upload DEPLOY.md
+        uses: release-drafter/release-drafter@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
+        with:
           tag_name: ${{ github.ref }}
           name: DEPLOY.md
-          path: ./module3_task3/DEPLOY.md
+          artifacts: ./module3_task3/DEPLOY.md
