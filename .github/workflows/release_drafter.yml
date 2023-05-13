@@ -7,7 +7,7 @@ jobs:
   release-drafter:
     runs-on: ubuntu-22.04
     steps:
-      - name: Upload Release Asset
+      - name: Upload Release
         uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -15,8 +15,8 @@ jobs:
           tag_name: ${{ github.ref }}
           name: awesome-website.zip
           path: ./module3_task3/awesome-website.zip
-      - name: Upload Release Asset
-        uses: softprops/action-gh-release@v1
+      - name: Upload Release
+        uses: release-drafter/release-drafter
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           with:
