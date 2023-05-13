@@ -7,17 +7,19 @@ jobs:
   release-drafter:
     runs-on: ubuntu-18.04
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14.x'
-      - name: Create Release
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_VERSION: ${{ github.event.release.tag_name }}
-        run: |
-          git checkout ${{ github.event.release.tag_name }}
-          make package
-          cd module3_task4 && zip -r ../awesome-website.zip *
+        with:
+          tag_name: ${{ github.ref }}
+          name: awesome-website.zip
+          path: ./module3_task3/awesome-website.zip
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+          tag_name: ${{ github.ref }}
+          name: DEPLOY.md
+          path: ./module3_task3/DEPLOY.md
