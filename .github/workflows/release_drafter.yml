@@ -5,7 +5,7 @@ on:
       - main
 jobs:
   release-drafter:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v1
