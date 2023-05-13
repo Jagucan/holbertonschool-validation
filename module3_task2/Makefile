@@ -28,10 +28,10 @@ test: ## test the application
 lint: ## Static linting on go files using golangci-lint
 	@-golangci-lint run
 
-unit-tests: ## unit tests
+unit-tests: ## execute unit tests
 	@go test -v -short -coverprofile=coverage-units.out     
 
-integration-tests: ## integration tests
+integration-tests: ## execute integration tests
 	@go test -v -coverprofile=coverage-integrations.out
 
 check: ## Markdown linting on syntax and dead links
@@ -45,5 +45,5 @@ package: ## Creates an zip package
 	@make build
 	@zip awesome-website.zip awesome-api ./dist/
 
-help: ## Shows help
+help: ## Show help
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'

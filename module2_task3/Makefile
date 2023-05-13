@@ -1,15 +1,15 @@
-build:	## compile the source code of the application to a binary named awesome-api
+build:	## Generate the website
 	make lint
 	go get github.com/gorilla/mux
 	go build
 
-run:	## run the application in background by executing the binary awesome-api
+run:	## run the application
 	./awesome-api >./awesome-api.log 2>&1 &
 
-stop:	## stop the application with the command kill XXXXX where XXXXX is the Process ID of the application. 
+stop:	## stop the application
 	kill "$(shell pgrep awesome-api)"
 
-clean:	## Stop the application. Delete the binary awesome-api and the log file awesome-api.log
+clean:	## Clean content
 	- make stop
 	- rm ./awesome-api ./awesome-api.log ./coverage-units.out 
 
@@ -20,11 +20,11 @@ test: ## test the application
 lint: ## Static linting on go files using golangci-lint
 	@golangci-lint run
 
-unit-tests: ## execute (successfully) the Golang unit tests:
+unit-tests: ## execute unit tests:
 	@go test -v -short -coverprofile=coverage-units.out	
 
-integration-tests: ## execute the Golang integration tests
+integration-tests: ## execute integration tests
 	@go test -v -coverprofile=coverage-integrations.out
 
-help: ## Show this help message
+help: ## Show help
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
