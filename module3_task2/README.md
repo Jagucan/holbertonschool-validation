@@ -21,6 +21,7 @@
 - check: Check
 - validate: validate W3C Validator
 - help: show the help
+- package: creates an zip package
 
 ## Build Workflow
 

@@ -43,6 +43,7 @@ validate: ## validate using W3C Validator
 
 package: ## Creates an zip package
 	@make build
+	@make check
 	@zip awesome-website.zip awesome-api ./dist/
 
 help: ## Show help
