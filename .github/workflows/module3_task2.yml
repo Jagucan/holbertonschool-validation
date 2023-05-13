@@ -11,6 +11,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - run: cd module3_task2 && ./setup.sh
+      - run: cd module3_task2 && make build
       - run: cd module3_task2 && make help
       - run: cd module3_task2 && make clean
       - run: cd module3_task2 && make validate
