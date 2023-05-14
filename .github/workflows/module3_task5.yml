@@ -1,0 +1,17 @@
+name: module3_task5
+on:
+  push:
+    tags:
+      - '1.0.0'
+  schedule:
+    - cron: '0 0 * * *'
+jobs:
+  module3_task5:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - run: cd module3_task5 && ./setup.sh
+      - run: cd module3_task5 && make help
+      - run: cd module3_task5 && make clean
