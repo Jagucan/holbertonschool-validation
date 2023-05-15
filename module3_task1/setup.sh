@@ -5,5 +5,6 @@ wget -O hugo_binary.deb https://github.com/gohugoio/hugo/releases/download/v0.11
 dpkg -i hugo_binary.deb
 rm hugo_binary.deb
 curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin 
+export PATH=$PATH:/usr/local/go/bin
 npm install -g markdown-link-check
 npm install -g markdownlint-cli
