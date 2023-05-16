@@ -14,7 +14,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           name: archive-website.zip
-          path: ./module3_task3/archive-website.zip
+          path: ./module3_task4/archive-website.zip
       - name: Upload DEPLOY.md
         uses: release-drafter/release-drafter@v1.0.1
         env:
@@ -22,4 +22,4 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           name: DEPLOY.md
-          artifacts: ./module3_task3/DEPLOY.md
+          artifacts: ./module3_task4/DEPLOY.md
