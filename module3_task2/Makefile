@@ -45,6 +45,7 @@ check:	## Lint markdonw source, check dead links
 	find content -name \*.md -print0 | xargs -0 -n1 markdown-link-check
 
 validate:	## Validate the file dist/index.html using the command line Holberton’s W3C Validator.
+	make build
 	python3 /opt/W3C-Validator/w3c_validator.py ./dist/index.html || true
 
 help:	## Show this help usage.
