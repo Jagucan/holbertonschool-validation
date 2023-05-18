@@ -1,4 +1,4 @@
-name: module3_task5
+name: module4_task0
 on:
   push:
   pull_request:
@@ -10,23 +10,23 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: cd module3_task5 && ./setup.sh
-      - run: cd module3_task5 && make build
-      - run: cd module3_task5 && make unit-tests
-      - run: cd module3_task5 && make integration-tests
-      - run: cd module3_task5 && make validate
-      - run: cd module3_task5 && make help
-      - run: cd module3_task5 && make lint
-      - run: cd module3_task5 && make package
+      - run: cd module4_task0 && ./setup.sh
+      - run: cd module4_task0 && make build
+      - run: cd module4_task0 && make unit-tests
+      - run: cd module4_task0 && make integration-tests
+      - run: cd module4_task0 && make validate
+      - run: cd module4_task0 && make help
+      - run: cd module4_task0 && make lint
+      - run: cd module4_task0 && make package
       - uses: actions/upload-artifact@v3
         with:
           name: awesome-website
-          path: ./module3_task4/awesome-website.zip
+          path: ./module4_task0/awesome-website.zip
       - name: Deploy draft to Netlify
         if: github.event_name == 'pull_request'
         uses: nwtgck/actions-netlify@v2.0
         with:
-          publish-dir: './module3_task5/dist'
+          publish-dir: './module4_task0/dist'
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
@@ -38,7 +38,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: nwtgck/actions-netlify@v2.0
         with:
-          publish-dir: './module3_task5/dist'
+          publish-dir: './module4_task0/dist'
           production-branch: main
           production-deploy: true
           enable-pull-request-comment: false
@@ -66,5 +66,5 @@ jobs:
         with:
           files: |
             awesome-website.zip
-            ./module3_task5/DEPLOY.md
-          body_path: ./module3_task5/DEPLOY.md
+            ./module4_task0/DEPLOY.md
+          body_path: ./module4_task0/DEPLOY.md

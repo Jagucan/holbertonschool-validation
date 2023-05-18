@@ -1,25 +1,19 @@
-name: release-drafter
+name: release_drafter
+
 on:
   push:
-    branches:
-      - main
+  pull_request:
+    types: [opened, reopened, synchronize]
+permissions:
+  contents: read
+
 jobs:
-  release-drafter:
+  update_release_draft:
+    permissions:
+      contents: write
+      pull-requests: write
     runs-on: ubuntu-22.04
     steps:
-      - name: Upload Release
-        uses: softprops/action-gh-release@v1
+      - uses: release-drafter/release-drafter@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          name: archive-website.zip
-          path: ./module3_task4/archive-website.zip
-      - name: Upload DEPLOY.md
-        uses: release-drafter/release-drafter@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          name: DEPLOY.md
-          artifacts: ./module3_task4/DEPLOY.md
