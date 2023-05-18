@@ -8,4 +8,3 @@ curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/insta
 export PATH=$PATH:/usr/local/go/bin
 npm install -g markdownlint-cli
 npm install -g markdown-link-check
-apt-get install zip
