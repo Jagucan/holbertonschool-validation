@@ -44,7 +44,7 @@ check: ## Markdown linting on syntax and dead links
 	@markdown-link-check ./content/posts/*
 	@markdownlint ./content/posts/*
 
-validate: ## should validate the file ./dist/index.html by using the command line Holberton’s W3C Validator
+validate: ## validate using W3C Validator
 	@-w3c_validator.py ./dist/index.html
 
 validate: ## validate using W3C Validator
