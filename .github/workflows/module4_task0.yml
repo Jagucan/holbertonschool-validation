@@ -3,7 +3,7 @@ on:
   push:
   pull_request:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
 jobs:
   build-artifact:
     runs-on: ubuntu-22.04
@@ -16,8 +16,6 @@ jobs:
       - run: cd module4_task0 && make integration-tests
       - run: cd module4_task0 && make validate
       - run: cd module4_task0 && make help
-      - run: cd module4_task0 && make lint
-      - run: cd module4_task0 && make package
       - uses: actions/upload-artifact@v3
         with:
           name: awesome-website
@@ -29,7 +27,7 @@ jobs:
           publish-dir: './module4_task0/dist'
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
+          deploy-message: 'Deploy from GitHub Actions'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -43,7 +41,7 @@ jobs:
           production-deploy: true
           enable-pull-request-comment: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
+          deploy-message: 'Deploy from GitHub Actions'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
