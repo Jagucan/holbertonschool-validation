@@ -1,6 +1,9 @@
 go-build: ## Generates the API binary from golang files
 	@docker run --volume=$(shell pwd):/app --workdir=/app golang:latest go build
 
+build-docker: ## Generates the right Docker image
+	docker build -t awesome:build ./.build
+
 hugo-build: ## Generates the static site using go hugo
 	@hugo
 
