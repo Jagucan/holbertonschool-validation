@@ -5,7 +5,7 @@ build-docker: ## Generates the right Docker image
 	docker build -t awesome:build ./.build
 
 hugo-build: ## Generates the static site using go hugo
-	@hugo
+	@@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:build hugo
 
 build: ## Generate the website
 	@make check
@@ -19,7 +19,7 @@ clean: ## Clean content
 	-@rm ./awesome-api ./awesome-api.log ./coverage-units.out 
  
 post: ## Create a new blog post
-	@hugo new posts/${POST_NAME}.md
+	@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:build hugo new posts/${POST_NAME}.md
 	@sed -i 's/^title:.*/title: ${POST_TITLE}/g' ./content/posts/${POST_NAME}.md
 
 run: ## Run the application
@@ -35,17 +35,17 @@ test: ## test the application
 	@make validate
 
 lint: ## Static linting on go files using golangci-lint
-	@markdownlint README.md DEPLOY.md
+	@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:build markdownlint README.md DEPLOY.md
 
 unit-tests: ## execute unit tests
-	@docker run --volume=$(shell pwd):/app --workdir=/app golang:latest go test -v -short -coverprofile=coverage-units.out
+	@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:build go test -v -short -coverprofile=coverage-units.out
 
 integration-tests: ## execute integration tests
-	@docker run --volume=$(shell pwd):/app --workdir=/app golang:latest go test -v -coverprofile=coverage-integrations.out
+	@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:build go test -v -coverprofile=coverage-integrations.out
 
 check: ## Markdown linting on syntax and dead links
-	@markdown-link-check ./content/posts/*
-	@markdownlint ./content/posts/*
+	@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:build markdown-link-check ./content/posts/*
+	@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:build markdownlint ./content/posts/*
 
 validate: ## validate using W3C Validator
 	@-w3c_validator.py ./dist/index.html
