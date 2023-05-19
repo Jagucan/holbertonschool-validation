@@ -1,4 +1,4 @@
-name: module4_task1
+name: module4_task2
 on:
   push:
   pull_request:
@@ -10,23 +10,23 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: cd module4_task1 && make build-docker
-      - run: cd module4_task1 && make build
-      - run: cd module4_task1 && make unit-tests
-      - run: cd module4_task1 && make integration-tests
-      - run: cd module4_task1 && make validate
-      - run: cd module4_task1 && make help
-      - run: cd module4_task1 && make lint
-      - run: cd module4_task1 && make package
+      - run: cd module4_task2 && make build-docker
+      - run: cd module4_task2 && make build
+      - run: cd module4_task2 && make unit-tests
+      - run: cd module4_task2 && make integration-tests
+      - run: cd module4_task2 && make validate
+      - run: cd module4_task2 && make help
+      - run: cd module4_task2 && make lint
+      - run: cd module4_task2 && make package
       - uses: actions/upload-artifact@v3
         with:
           name: awesome-website
-          path: ./module4_task1/awesome-website.zip
+          path: ./module4_task2/awesome-website.zip
       - name: Deploy draft to Netlify
         if: github.event_name == 'pull_request'
         uses: nwtgck/actions-netlify@v2.0
         with:
-          publish-dir: './module4_task1/dist'
+          publish-dir: './module4_task2/dist'
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
@@ -38,7 +38,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: nwtgck/actions-netlify@v2.0
         with:
-          publish-dir: './module4_task1/dist'
+          publish-dir: './module4_task2/dist'
           production-branch: main
           production-deploy: true
           enable-pull-request-comment: false
@@ -66,5 +66,5 @@ jobs:
         with:
           files: |
             awesome-website.zip
-            ./module4_task1/DEPLOY.md
-          body_path: ./module4_task1/DEPLOY.md
+            ./module4_task2/DEPLOY.md
+          body_path: ./module4_task2/DEPLOY.md
