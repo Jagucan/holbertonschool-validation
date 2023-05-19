@@ -6,5 +6,6 @@ RUN sudo dpkg -i hugo_binary.deb
 RUN rm hugo_binary.deb
 RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin 
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - && sudo apt-get install -y nodejs
+RUN sudo npm install -g npm@9.6.7
 RUN sudo npm install -g markdown-link-check
 RUN sudo npm install -g markdownlint-cli
