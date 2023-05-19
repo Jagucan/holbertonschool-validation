@@ -35,6 +35,8 @@ test: ## test the application
 	@make validate
 
 lint: ## Static linting on go files using golangci-lint
+	@make build-docker
+	@docker run --rm -i hadolint/hadolint < ./.build/Dockerfile
 	@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:build markdownlint README.md DEPLOY.md
 
 unit-tests: ## execute unit tests
@@ -56,3 +58,6 @@ package: ## Creates an zip package
 
 help: ## Show help
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
+
+docker-tests: ## execute docker tests to check an image create on docker
+	@container-structure-test test --image awesome:build --config ./.build/cst.yml
