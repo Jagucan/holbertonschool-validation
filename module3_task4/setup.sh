@@ -9,3 +9,4 @@ export PATH=$PATH:/usr/local/go/bin
 sudo npm install -g npm@9.6.7
 sudo npm install -g markdownlint-cli
 sudo npm install -g markdown-link-check
+sudo apt-get install zip
