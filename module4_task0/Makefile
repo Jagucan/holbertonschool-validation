@@ -47,7 +47,7 @@ check: ## Markdown linting on syntax and dead links
 validate: ## validate using W3C Validator
 	@-w3c_validator.py ./dist/index.html
 
-validate: ## validate using W3C Validator
+package: ## Creates an zip package
 	@make build
 	@zip awesome-website.zip awesome-api ./dist/
 
