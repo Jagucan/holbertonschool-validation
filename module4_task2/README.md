@@ -20,6 +20,7 @@
 - integration-tests: execute integration tests
 - post: Create a new blog post
 - check: Check
+- build-docker: Generates the right Docker image
 - validate: validate W3C Validator
 - help: show the help
 - docker-tests: execute docker tests to check an image create on docker
