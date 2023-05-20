@@ -50,3 +50,7 @@ validate:	## Validate the file dist/index.html using the command line Holbertonâ
 
 help:	## Show this help usage.
 	@sed -ne '/@sed/!s/## //p' $(MAKEFILE_LIST)
+
+package: ## Creates an zip package
+	@make build
+	@zip awesome-website.zip awesome-api ./dist/
