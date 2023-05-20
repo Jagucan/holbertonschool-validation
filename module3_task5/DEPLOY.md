@@ -2,7 +2,7 @@
 
 ## What is in the archive and how to unarchive it?
 
-The archive contains the files needed to deploy the awesome website. Unarchive it by running the command unzip awesome-website.zip.
+The archive contains the files needed to deploy the awesome website. Unarchive it by running the command `unzip awesome-website.zip`.
 
 ## What are the commands to start and stop the application?
 
