@@ -18,6 +18,7 @@ jobs:
       - run: cd module4_task2 && make help
       - run: cd module4_task2 && make lint
       - run: cd module4_task2 && make package
+      - run: cd module4_task2 && make docker-tests
       - uses: actions/upload-artifact@v3
         with:
           name: awesome-website
