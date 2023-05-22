@@ -60,4 +60,4 @@ help: ## Show help
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
 docker-tests: ## execute docker tests to check an image create on docker
-	@container-structure-test test --image awesome:build --config ./.build/cst.yml
+	@container-structure-test test --image awesome:build --config ./.build/cst.yml --output json | jq -r '[.pass,.fail,.duration] | "Passes:\t\(.[0])\nFailures:\t\(.[1])\nDuration:\t\(.[2])\nTotal tests:\t\(.[0]+.[1])"'
