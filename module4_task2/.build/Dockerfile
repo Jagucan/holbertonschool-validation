@@ -9,4 +9,4 @@ RUN apt-get update && apt-get upgrade -y \
 && curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - && sudo apt-get install -y nodejs \
 && sudo npm install -g markdown-link-check \
 && sudo npm install -g markdownlint-cli \
-&& sudo apt-get install jq
+&& apt-get install jq
