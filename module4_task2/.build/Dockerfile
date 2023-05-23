@@ -1,4 +1,4 @@
-# hadolint global ignore=DL3004,DL3007,DL3008,DL3009,DL3015,DL4001,DL4006,SC2046
+# hadolint global ignore=DL3007,DL3004,DL3008,DL3008,DL3009,DL3015,DL4006,SC2006,DL4001
 FROM golang:latest
 RUN apt-get update && apt-get upgrade -y \
 && apt-get install -y wget make dpkg curl sudo jq \

@@ -34,10 +34,9 @@ test: ## test the application
 	@make integration-tests
 	@make validate
 
-lint: ## Static linting on go files using golangci-lint
-	@make build-docker
-	@docker run --rm -i hadolint/hadolint < ./.build/Dockerfile
-	@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:build markdownlint README.md DEPLOY.md
+lint: ## Static linting on Go files using golangci-lint
+	@docker run --rm -i hadolint/hadolint < ./Dockerfile
+	@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:latest markdownlint README.md DEPLOY.md
 
 unit-tests: ## execute unit tests
 	@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:build go test -v -short -coverprofile=coverage-units.out
@@ -60,5 +59,5 @@ package: ## Creates an zip package
 help: ## Show help
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
-docker-tests: ## execute docker tests to check an image create on docker
-	@container-structure-test test --image awesome:build --config ./.build/cst.yml --output json | jq -r '[.pass,.fail,.duration] | "Passes:\t\(.[0])\nFailures:\t\(.[1])\nDuration:\t\(.[2])\nTotal tests:\t\(.[0]+.[1])"'
+docker-tests: ## Execute Docker tests to check an image created with Docker
+	@container-structure-test test --image awesome:latest --config ./.build/cst.yml --output json | jq -r '[.pass,.fail,.duration] | "Passes:\t\(.[0])\nFailures:\t\(.[1])\nDuration:\t\(.[2])\nTotal tests:\t\(.[0]+.[1])"'
