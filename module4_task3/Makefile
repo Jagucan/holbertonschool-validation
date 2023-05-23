@@ -54,7 +54,8 @@ validate: ## validate using W3C Validator
 
 package: ## Creates an zip package
 	@make build
-	@zip awesome-website.zip awesome-api ./dist/
+	@docker run --rm -v $(shell pwd):/app -w /app awesome:build make build
+	@docker save awesome:build | zip awesome-website.zip -
 
 help: ## Show help
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
