@@ -6,5 +6,5 @@ sudo dpkg -i hugo_extended_0.111.3.deb
 rm hugo_extended_0.111.3.deb
 curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin 
 export PATH=$PATH:/usr/local/go/bin
-sudo npm install -g npm@9.6.7 && npm install -g markdownlint-cli && npm install -g markdown-link-check -y
+sudo npm install -g npm@9.6.7 && npm install -g markdownlint-cli && sudo npm install -g markdown-link-check
 sudo apt-get install zip -y
