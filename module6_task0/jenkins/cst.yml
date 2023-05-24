@@ -1,6 +1,6 @@
 ---
 schemaVersion: 2.0.0
-imageName: Jenkins
+imageName: jenkins/jenkins:lts-jdk11
 checks:
   - type: exec
     cmd: ["java", "-version"]
