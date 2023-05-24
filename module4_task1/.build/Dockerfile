@@ -1,4 +1,4 @@
-FROM golang:latest
+FROM golang:1.15.8-buster
 RUN apt update && apt upgrade -y
 RUN apt install -y wget make dpkg curl sudo
 RUN wget -O hugo_binary.deb https://github.com/gohugoio/hugo/releases/download/v0.111.3/hugo_extended_0.111.3_linux-amd64.deb
