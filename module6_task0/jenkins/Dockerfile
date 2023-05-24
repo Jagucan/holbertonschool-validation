@@ -8,4 +8,4 @@ RUN wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/latest/d
 && chmod a+x /bin/hadolint \
 && hadolint Dockerfile
 COPY cst.yml /cst.yml
-CMD ["container-structure-test", "test", "--image", "Jenkins", "--config", "/cst.yml"]
+CMD ["container-structure-test", "test", "--image", "jenkins/jenkins:lts-jdk11", "--config", "/cst.yml"]
