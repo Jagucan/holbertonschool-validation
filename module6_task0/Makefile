@@ -6,7 +6,7 @@ build-docker: ## Generates the right Docker image
 	docker build -t jenkins-custom:latest ./jenkins
 
 hugo-build: ## Generates the static site using go hugo
-	@@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:build hugo
+	@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:build hugo
 
 build: ## Generate the website
 	@make check
@@ -18,7 +18,7 @@ clean: ## Clean content
 	-@make stop
 	-@rm -rf ./dist
 	-@rm ./awesome-api ./awesome-api.log ./coverage-units.out 
- 
+
 post: ## Create a new blog post
 	@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:build hugo new posts/${POST_NAME}.md
 	@sed -i 's/^title:.*/title: ${POST_TITLE}/g' ./content/posts/${POST_NAME}.md
@@ -52,14 +52,10 @@ check: ## Markdown linting on syntax and dead links
 validate: ## validate using W3C Validator
 	@-w3c_validator.py ./dist/index.html
 
-package: ## Creates an zip package
+package: ## Creates a zip package
 	@make build
 	@docker run --rm -v $(shell pwd):/app -w /app awesome:build make build
 	@docker save awesome:build | zip awesome-website.zip -
 
 help: ## Show help
-	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
-
-docker-tests: ## Execute Docker tests to check an image created with Docker
-	@docker run --volume=$(shell pwd):/app --workdir=/app --rm -v /var/run/docker.sock:/var/run/docker.sock gcr.io/gcp-runtimes/container-structure-test:latest test --image jenkins-custom:latest --config ./jenkins/cst.yml
-	@container-structure-test test --image jenkins-custom:latest --config ./.build/cst.yml --output json | jq -r '[.pass,.fail,.duration] | "Passes:\t\(.[0])\nFailures:\t\(.[1])\nDuration:\t\(.[2])\nTotal tests:\t\(.[0]+.[1])"'
+	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e '
