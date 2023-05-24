@@ -5,7 +5,7 @@ build-docker: ## Generates the right Docker image
 	docker build -t awesome:build ./.build
 
 hugo-build: ## Generates the static site using go hugo
-	@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:build hugo
+	@@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:build hugo
 
 build: ## Generate the website
 	@make check
@@ -34,8 +34,9 @@ test: ## test the application
 	@make integration-tests
 	@make validate
 
-lint: ## Static linting on go files using golangci-lint
-	@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:build markdownlint README.md DEPLOY.md
+lint: ## Static linting on Go files using golangci-lint
+	@docker run --rm -i hadolint/hadolint < ./Dockerfile
+	@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:latest markdownlint README.md DEPLOY.md
 
 unit-tests: ## execute unit tests
 	@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:build go test -v -short -coverprofile=coverage-units.out
@@ -52,7 +53,11 @@ validate: ## validate using W3C Validator
 
 package: ## Creates an zip package
 	@make build
-	@zip awesome-website.zip awesome-api ./dist/
+	@docker run --rm -v $(shell pwd):/app -w /app awesome:build make build
+	@docker save awesome:build | zip awesome-website.zip -
 
 help: ## Show help
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
+
+docker-tests: ## Execute Docker tests to check an image created with Docker
+	@container-structure-test test --image awesome:latest --config ./.build/cst.yml --output json | jq -r '[.pass,.fail,.duration] | "Passes:\t\(.[0])\nFailures:\t\(.[1])\nDuration:\t\(.[2])\nTotal tests:\t\(.[0]+.[1])"'
