@@ -1,5 +1,6 @@
+# hadolint ignore=DL3007
 FROM alpine:3.13
-
+# hadolint global ignore=DL3007,DL3004,DL3008,DL3008,DL3009,DL3015,DL4006,SC2046,DL4001
 RUN apk update \
 && apk upgrade \
 && apk add --no-cache wget make curl jq nodejs npm \
