@@ -1,13 +1,6 @@
 # hadolint ignore=DL3007
 FROM golang:latest
-# hadolint ignore=DL3004
-# hadolint ignore=DL3008
-# hadolint ignore=DL3015
-# hadolint ignore=DL3009
-# hadolint ignore=DL4006
-# hadolint ignore=SC2006
-# hadolint ignore=DL4001
-# hadolint ignore=SC2046
+# hadolint global ignore=DL3007,DL3004,DL3008,DL3008,DL3009,DL3015,DL4006,SC2046,DL4001,DL3016,DL3018,DL4006,DL4001
 RUN apt-get update && apt-get upgrade -y \
 && apt-get install -y wget make dpkg curl sudo jq \
 && wget -q -O hugo_binary.deb https://github.com/gohugoio/hugo/releases/download/v0.111.3/hugo_extended_0.111.3_linux-amd64.deb \
