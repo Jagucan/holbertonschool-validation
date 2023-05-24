@@ -49,7 +49,7 @@ validate: ## validate using W3C Validator
 
 package: ## Creates an zip package
 	@make build
-	@zip awesome-website.zip awesome-api ./dist/
+	@zip -r awesome-website.zip awesome-api ./dist/
 
 help: ## Show help
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
