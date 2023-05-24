@@ -1,0 +1,7 @@
+---
+schemaVersion: 2.0.0
+imageName: Jenkins
+checks:
+  - type: exec
+    cmd: ["java", "-version"]
+    expectedOutput: "openjdk version 11"

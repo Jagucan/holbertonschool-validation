@@ -3,6 +3,7 @@ go-build: ## Generates the API binary from golang files
 
 build-docker: ## Generates the right Docker image
 	docker build -t awesome:build ./.build
+	docker build -t jenkins-custom:latest ./jenkins
 
 hugo-build: ## Generates the static site using go hugo
 	@@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:build hugo
@@ -35,7 +36,7 @@ test: ## test the application
 	@make validate
 
 lint: ## Static linting on Go files using golangci-lint
-	@docker run --rm -i hadolint/hadolint < ./Dockerfile
+	@docker run --rm -i hadolint/hadolint < ./jenkins/Dockerfile
 	@docker run --volume=$(shell pwd):/app --workdir=/app --rm awesome:latest markdownlint README.md DEPLOY.md
 
 unit-tests: ## execute unit tests
@@ -60,4 +61,5 @@ help: ## Show help
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
 docker-tests: ## Execute Docker tests to check an image created with Docker
-	@container-structure-test test --image awesome:latest --config ./.build/cst.yml --output json | jq -r '[.pass,.fail,.duration] | "Passes:\t\(.[0])\nFailures:\t\(.[1])\nDuration:\t\(.[2])\nTotal tests:\t\(.[0]+.[1])"'
+	@docker run --volume=$(shell pwd):/app --workdir=/app --rm -v /var/run/docker.sock:/var/run/docker.sock gcr.io/gcp-runtimes/container-structure-test:latest test --image jenkins-custom:latest --config ./jenkins/cst.yml
+	@container-structure-test test --image jenkins-custom:latest --config ./.build/cst.yml --output json | jq -r '[.pass,.fail,.duration] | "Passes:\t\(.[0])\nFailures:\t\(.[1])\nDuration:\t\(.[2])\nTotal tests:\t\(.[0]+.[1])"'
